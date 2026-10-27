@@ -1,0 +1,6 @@
+id,hipotesis,verdict,bukti
+H1,"Pemakaian tertinggi di jam kerja siang, terendah di malam hari",Terbukti,"jam tertinggi 9:00, terendah 5:00; 7 jam menyumbang 80% beban maksimum"
+H2,Pemakaian akhir pekan jauh lebih rendah daripada hari kerja,Terbukti,rasio akhir pekan/hari kerja 0.349
+H3,Jenis beban Maximum terkumpul di beberapa jam tertentu,Terbukti,7 jam menampung 80% interval Maximum
+H4,Power factor rendah lebih sering muncul saat beban ringan,Terbukti,"PF rendah: Light 76.9%, Medium 10.0%, Maximum 14.3%"
+H5,Sebagian beban jam peak bisa dipindah tanpa menciptakan puncak baru,Sebagian,puncak tahunan tidak berubah; hemat Rp12.5 juta/tahun pada 10% (tarif asumsi); pada 22 hari jam tujuan melampaui puncak harian lama

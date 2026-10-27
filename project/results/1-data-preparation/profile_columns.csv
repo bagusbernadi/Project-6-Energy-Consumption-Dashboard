@@ -1,0 +1,14 @@
+kolom,tipe,kosong,unik,min,median,max
+row_id,int64,0,35040,,,
+date,str,0,35040,,,
+kwh,float64,0,3343,0.0,4.57,157.18
+lag_kvarh,float64,0,1954,0.0,5.0,96.91
+lead_kvarh,float64,0,768,0.0,0.0,27.76
+co2_t,float64,0,8,0.0,0.0,0.07
+lag_pf,float64,0,5079,0.0,87.96,100.0
+lead_pf,float64,0,3366,0.0,100.0,100.0
+nsm,int64,0,96,0.0,42750.0,85500.0
+week_status,str,0,2,,,
+day_of_week,str,0,7,,,
+load_type,str,0,3,,,
+ts_raw,datetime64[us],0,35040,,,

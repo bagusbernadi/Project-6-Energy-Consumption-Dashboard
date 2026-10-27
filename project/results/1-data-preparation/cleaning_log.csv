@@ -1,0 +1,6 @@
+kode,masalah,baris,keputusan,catatan
+L1,Baris berlabel 00:00 (akhir hari) bertanggal sama dengan awal hari,365,diperbaiki (tanggal +1 hari),Setelah koreksi 35.040 timestamp unik dan selisih tepat 15 menit
+L2,Nilai kosong atau negatif,0,tidak ada,-
+L3,Interval ganda atau hilang,0,tidak ada setelah L1,-
+L4,"Kolom NSM mengikuti label asli, bukan label terkoreksi",0,tidak dipakai,NSM dihitung ulang dari timestamp bila perlu
+L5,"CO2 dibulatkan 0,01 tCO2 per interval",2222,dipakai dengan catatan,Total CO2 bulanan diperlakukan sebagai perkiraan

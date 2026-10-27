@@ -2,67 +2,68 @@
 
 # Project 6: Energy Consumption Dashboard
 
-**Status: Design (rancangan).** Halaman rancangan ada di [`index.html`](index.html). Analisis, dashboard, dan angka hasil belum dikerjakan, sehingga bagian Analysis, Recommendation, dan Impact di bawah masih kosong.
+**Status: Selesai di branch `project-6-build` (menunggu review sebelum digabung ke `main`).**
 
-**Tujuan:** membangun dashboard pemakaian listrik pabrik yang menunjukkan kapan beban puncak terjadi, berapa biaya yang ditimbulkannya, dan beban mana yang bisa dipindah ke jam yang lebih murah, sehingga jadwal operasi dapat disusun untuk menekan biaya energi.
+Halaman rancangan dan Report: https://bagusbernadi.github.io/Project-6-Energy-Consumption-Dashboard/
 
 | | |
 |---|---|
-| Kategori | Industri & energi (Tech / Energi) |
-| Tingkat | Mudah |
-| Data | Dataset publik UCI Steel Industry Energy Consumption |
-| Tools | DuckDB + SQL, Python (pandas), Streamlit + Plotly. Excel opsional |
+| Kategori | Manufaktur (energi pabrik baja) |
+| Data | Dataset publik UCI 851, Steel Industry Energy Consumption (lisensi belum diverifikasi) |
+| Tools | SQL (DuckDB), Python (pandas, matplotlib), Jupyter, Streamlit + Plotly, GitHub |
 
 ## 1. Problem
 
-**Pertanyaan utama:** Kapan beban puncak terjadi, berapa biayanya, dan berapa yang bisa dihemat jika sebagian beban dipindah ke jam yang lebih murah?
-
-Rancangan memecahnya menjadi 14 pertanyaan (9 Utama, 4 Pendukung, 1 Tambahan) dalam tema pola waktu, beban puncak, biaya, kualitas daya dan emisi, dampak, serta validitas data. Daftar lengkap ada di bagian 2 halaman rancangan.
+Kapan pabrik memakai listrik paling banyak, berapa biayanya, dan apakah memindahkan sebagian beban dari jam tarif tinggi layak dipertimbangkan? Dipecah menjadi 14 pertanyaan (9 utama); jawabannya ada di tab Report.
 
 ## 2. Data
 
-- Sumber data: [here](https://archive.ics.uci.edu/dataset/851/steel+industry+energy+consumption) (Versi: 1, Tanggal akses: 23 Oktober 2026)
-- Sumber: pabrik baja DAEWOO Steel, Gwangyang, Korea Selatan (UCI Machine Learning Repository).
-- Ukuran (perkiraan, **belum diverifikasi**): ±35.040 baris per 15 menit, 11 kolom, ±1 tahun.
-- Biaya dihitung dengan tarif contoh berlabel asumsi: off-peak Rp1.100/kWh, peak 17.00–22.00 Rp1.650/kWh.
-- Rencana tabel: `readings`, `dim_time`, `dim_tariff`, `daily_summary`.
-- Lisensi dan sitasi: dicek di halaman sumber sebelum project dipublikasikan.
-- Data mentah tidak di-commit ke repository.
+- 35.040 interval 15 menit, 1 tahun (2018), satu pabrik baja (DAEWOO Steel, Gwangyang). Sumber: [UCI 851](https://archive.ics.uci.edu/dataset/851/steel+industry+energy+consumption), tanggal akses 23 Oktober 2026. Data tidak di-commit (lihat `project/data/README.md`).
+- Ditemukan 365 baris berlabel 00:00 yang sebenarnya akhir hari (bertanggal sama dengan awal hari); tanggalnya digeser +1 hari, setelah itu 365 hari lengkap 96 interval, tanpa duplikat.
 
 ## 3. Analysis
 
-Belum dikerjakan. Rencana langkah (12 langkah, tahap A sampai D) ada di bagian 6 halaman rancangan. Semua angka nanti dihitung dari data dengan SQL dan dicek silang.
-
-Hipotesis yang akan diuji (belum terbukti):
-1. Pemakaian tertinggi di jam kerja siang, terendah malam hari.
-2. Pemakaian akhir pekan jauh lebih rendah.
-3. Beban Maximum terkumpul di beberapa jam tertentu.
-4. Power factor rendah lebih sering saat beban ringan.
-5. Sebagian beban jam peak bisa dipindah tanpa puncak baru.
+- Energi 960 MWh setahun, beban puncak 629 kW, load factor 0,17.
+- Jam tersibuk jam 9; akhir pekan hanya 35% dari hari kerja. Porsi PF rendah: Light 77%, Medium 10%, Maximum 14% (hipotesis PF rendah saat beban ringan terbukti).
+- Blok tarif peak (17-22) bukan jam beban tertinggi; porsinya 32% dari biaya (tarif asumsi Rp1.650 dan Rp1.100 per kWh).
+- 983 kejadian beban tinggi (di atas P90), durasi median 0,5 jam.
+- Skenario pemindahan 10%: hemat Rp12,5 juta per tahun (estimated); 40% (batas atas): Rp50,1 juta. Puncak tahunan tidak berubah.
+- Validasi: 10 uji constraint, 9 pemeriksaan konsistensi, 21 pemeriksaan SQL vs pandas (2.017 nilai) lulus.
 
 ## 4. Recommendation
 
-Belum dikerjakan. Output yang direncanakan: jadwal pemindahan beban dari jam peak ke jam off-peak.
+Mulai dari pemindahan beban peak yang paling mudah (10%), pantau power factor di jam beban ringan, dan ganti tarif asumsi dengan tarif kontrak sebelum menghitung ulang di dashboard.
 
 ## 5. Impact
 
-Belum dikerjakan. Rumus yang akan dipakai (semua hasil diberi label `estimated`):
+Estimated: Rp1,0 juta per bulan pada skenario 10% (batas atas, tarif asumsi).
+
+## Batasan
+
+- Satu pabrik, satu tahun; tarif adalah asumsi; penghematan adalah batas atas (kelayakan operasional tidak diuji).
+- Lisensi dataset belum diverifikasi. Dashboard belum di-deploy.
+
+## Menjalankan
 
 ```
-Penghematan per bulan = kWh dipindah × (tarif peak − tarif off-peak)
+pip install -r project/requirements.txt
+cd project/code/1-data-preparation/python && python 01_load_profile.py && python 02_build_db.py
+cd ../../2-analysis/python && for s in 03 04 05 06 07; do python ${s}_*.py; done
+cd ../../3-presentation/python && for s in 08 09 10 11; do python ${s}_*.py; done
+streamlit run ../streamlit/app.py
+python design-and-report/src/build_report.py   # dari root repo
 ```
-
-## Batasan yang sudah diketahui
-
-- Data tidak menyebut mesin mana yang menyala, jadi penghematan adalah batas atas.
-- Tarif adalah asumsi, bukan tarif resmi.
-- Satu pabrik dan satu tahun data.
 
 ## Struktur repository
 
 ```
-index.html   Halaman rancangan project (bisa dibuka di browser atau lewat GitHub Pages)
-README.md    Dokumen ini
+index.html                 Pengalihan ke design-and-report/
+design-and-report/         Halaman Design dan Report (src/ berisi generator)
+project/
+  code/1-data-preparation  Muat dan profil data, database (python, sql)
+  code/2-analysis          View SQL, analisis, skenario, validasi
+  code/3-presentation      Data dashboard, infografis, notebook, README, Streamlit
+  results/                 CSV hasil per tahap, infografis, notebook
+  docs/                    Definisi dan kamus data
+  data/                    README sumber data (data mentah dan bersih tidak di-commit)
 ```
-
-Folder `docs/`, `data/`, `scripts/`, `sql/`, `notebooks/`, `dashboard/`, dan `outputs/` ditambahkan saat pengerjaan dimulai.

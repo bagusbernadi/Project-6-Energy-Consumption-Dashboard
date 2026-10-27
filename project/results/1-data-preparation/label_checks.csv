@@ -1,0 +1,4 @@
+pemeriksaan,cocok,dari
+WeekStatus dataset = akhir pekan menurut kalender (hari interval dimulai),35040,35040
+Day_of_week dataset = nama hari menurut kalender,35040,35040
+Load_Type berurutan Light < Medium < Maximum menurut kWh rata-rata,1,1

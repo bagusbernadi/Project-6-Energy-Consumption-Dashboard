@@ -1,0 +1,11 @@
+test,outcome
+ts ganda,ditolak
+kWh negatif,ditolak
+power factor di atas 100,ditolak
+Load_Type tidak dikenal,ditolak
+fix_flag tidak dikenal,ditolak
+dim_time tanpa readings,ditolak
+jam di luar 0-23,ditolak
+tarif nol,ditolak
+blok tarif ganda,ditolak
+tanggal ganda di daily_summary,ditolak

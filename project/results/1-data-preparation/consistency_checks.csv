@@ -1,0 +1,10 @@
+pemeriksaan,violations
+readings = 35.040 baris,0.0
+dim_time satu baris per readings,0.0
+setiap interval masuk tepat satu blok tarif,0.0
+setiap hari tepat 96 interval,0.0
+jumlah hari 365,0.0
+total kWh harian = total kWh readings,0.0
+biaya = kWh x tarif blok,0.0
+peak_cost_share antara 0 dan 1,0.0
+ts menaik terhadap row_id,0.0

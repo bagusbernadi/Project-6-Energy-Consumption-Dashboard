@@ -1,0 +1,23 @@
+ukuran,nilai
+baris,35040
+kolom,11
+periode_awal_label,2018-01-01 00:00:00
+periode_akhir_label,2018-12-31 23:45:00
+nilai_kosong,0
+nilai_negatif_kwh,0
+timestamp_ganda_label_asli,0
+timestamp_ganda_setelah_koreksi,0
+baris_00_00_salah_tanggal,365
+total_kwh_mentah,959636.71
+label_asli_tidak_menaik,365
+interval_bukan_15_menit_asli,729
+interval_bukan_15_menit_setelah_koreksi,0
+hari_dengan_96_interval,365
+jumlah_hari,365
+nsm_tidak_cocok_label,0
+co2_nol_padahal_kwh_positif,2222
+lag_pf_nol_dengan_kvarh_positif,0
+lag_kvarh_dan_lead_kvarh_sama_sama_positif,4237
+selisih_00_00_vs_23_45_sama_hari,1.25
+selisih_00_00_vs_00_15_sama_hari,4.147
+selisih_00_00_vs_00_15_hari_berikut,1.297

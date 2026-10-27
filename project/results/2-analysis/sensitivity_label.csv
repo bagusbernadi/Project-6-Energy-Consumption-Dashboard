@@ -1,0 +1,4 @@
+cara,jam_puncak,kwh_jam_puncak,biaya_setahun,selisih_biaya_vs_A,jam_blok_peak_beda
+A terkoreksi (dipakai),9,231.24136986301372,1180725502.0,0.0,0
+B label mentah = awal interval,9,234.20693150684932,1189153036.5,8427534.5,730
+C akhir interval tanpa koreksi 00:00,9,231.24136986301372,1180725502.0,0.0,0

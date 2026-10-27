@@ -1,0 +1,22 @@
+pemeriksaan,jumlah_nilai,selisih_maks,status
+total kWh setahun,1,5.7159923017024994e-08,PASS
+biaya setahun,1,0.0,PASS
+biaya peak setahun,1,0.0,PASS
+kWh peak setahun,1,4.452886059880257e-09,PASS
+beban puncak (kW),1,0.0,PASS
+CO2 setahun,1,5.24664756085258e-11,PASS
+porsi biaya peak,1,5.551115123125783e-17,PASS
+bulanan: total_kwh,12,2.1464074961841106e-09,PASS
+bulanan: cost,12,0.0,PASS
+bulanan: co2_t,12,6.892264536872972e-13,PASS
+bulanan: peak_kwh,12,5.093170329928398e-11,PASS
+bulanan: peak_kw,12,0.0,PASS
+harian: total_kwh,365,4.547473508864641e-12,PASS
+harian: peak_kw,365,0.0,PASS
+harian: biaya,365,0.0,PASS
+harian: load_factor,365,7.771561172376096e-16,PASS
+harian: porsi biaya peak,365,9.71445146547012e-17,PASS
+profil jam (weekday dan weekend),48,1.7053025658242404e-13,PASS
+biaya rata-rata per hari dalam minggu,7,4.656612873077393e-10,PASS
+jumlah interval per jam dan Load_Type,46,0.0,PASS
+interval PF rendah per jam,24,0.0,PASS
