@@ -28,7 +28,7 @@ Halaman rancangan dan Report: https://bagusbernadi.github.io/Project-6-Energy-Co
 | | |
 |---|---|
 | Kategori | Manufaktur (energi pabrik baja) |
-| Data | Dataset publik UCI 851, Steel Industry Energy Consumption (lisensi belum diverifikasi) |
+| Data | Dataset publik UCI 851, Steel Industry Energy Consumption (lisensi CC BY 4.0) |
 | Tools | SQL (DuckDB), Python (pandas, matplotlib), Jupyter, Streamlit + Plotly, GitHub |
 
 ## 1. Problem
@@ -37,7 +37,7 @@ Kapan pabrik memakai listrik paling banyak, berapa biayanya, dan apakah memindah
 
 ## 2. Data
 
-- {n(dq["baris"])} interval 15 menit, 1 tahun (2018), satu pabrik baja (DAEWOO Steel, Gwangyang). Sumber: [UCI 851]({'https://archive.ics.uci.edu/dataset/851/steel+industry+energy+consumption'}), tanggal akses {ACCESS_DATE}. Data tidak di-commit (lihat `project/data/README.md`).
+- {n(dq["baris"])} interval 15 menit, 1 tahun (2018), satu pabrik baja (DAEWOO Steel, Gwangyang). Sumber: [UCI 851]({'https://archive.ics.uci.edu/dataset/851/steel+industry+energy+consumption'}), tanggal akses {ACCESS_DATE}. Lisensi CC BY 4.0; sitasi: V E, S., Shin, C., & Cho, Y. (2021). Steel Industry Energy Consumption [Dataset]. UCI Machine Learning Repository. https://doi.org/10.24432/C52G8C. Data tidak di-commit (lihat `project/data/README.md`).
 - Ditemukan {n(dq["baris_00_00_salah_tanggal"])} baris berlabel 00:00 yang sebenarnya akhir hari (bertanggal sama dengan awal hari); tanggalnya digeser +1 hari, setelah itu {n(dq["jumlah_hari"])} hari lengkap 96 interval, tanpa duplikat.
 
 ## 3. Analysis
@@ -60,7 +60,7 @@ Estimated: Rp{juta(s10.penghematan_per_bulan)} juta per bulan pada skenario 10% 
 ## Batasan
 
 - Satu pabrik, satu tahun; tarif adalah asumsi; penghematan adalah batas atas (kelayakan operasional tidak diuji).
-- Lisensi dataset belum diverifikasi. Dashboard belum di-deploy.
+- Dashboard belum di-deploy.
 
 ## Menjalankan
 

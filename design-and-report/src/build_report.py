@@ -271,12 +271,12 @@ npy, loc = len(allcode), sum(len(p.read_text(encoding="utf-8").splitlines()) for
 nsql = len(list((REPO / CODE_REL).rglob("*.sql")))
 hv = hyp.set_index("id")
 rp3 = mk(f'<div class="card"><p><b>Jawaban singkat:</b> dataset sesuai rancangan (UCI 851, {I(dbc["readings"])} baris, 11 kolom, 1 tahun) dengan satu temuan penting: label 00:00 salah tanggal. '
-         'Empat hipotesis terbukti dan satu terbukti sebagian. Lisensi dataset belum diverifikasi.</p></div>',
+         'Empat hipotesis terbukti dan satu terbukti sebagian. Lisensi dataset CC BY 4.0 (dicek 28 Oktober 2026).</p></div>',
          table(["Aspek", "Rancangan", "Realisasi", "Verdict"], [
              ["Sumber", f"UCI dataset 851, versi 1, akses {cs(ACCESS_DATE)}", "CSV dilampirkan manual karena unduhan dari lingkungan kerja diblokir; isi file dicocokkan dengan ukuran dan kolom rancangan", PART("Sesuai + penyesuaian")],
              ["Ukuran", "±35.040 baris, 11 kolom, ±1 tahun", f"{I(dq['baris'])} baris, {I(dq['kolom'])} kolom, {I(dq['jumlah_hari'])} hari", OK("Sesuai")],
              ["Kualitas label waktu", "Tidak disebut", f"{I(dq['baris_00_00_salah_tanggal'])} baris 00:00 salah tanggal; diperbaiki dan dicatat di log (L1)", PART("Temuan baru")],
-             ["Lisensi dan sitasi", "Dicek di halaman sumber sebelum dipublikasikan", "Belum diverifikasi (halaman UCI tidak bisa dibuka dari lingkungan kerja); dicatat di <code>project/data/README.md</code>", NO("Belum selesai")],
+             ["Lisensi dan sitasi", "Dicek di halaman sumber sebelum dipublikasikan", "CC BY 4.0; sitasi V E, S., Shin, C., &amp; Cho, Y. (2021). Steel Industry Energy Consumption [Dataset]. UCI Machine Learning Repository. https://doi.org/10.24432/C52G8C (dicek 28 Oktober 2026); dicatat di <code>project/data/README.md</code>", OK("Sesuai")],
              ["Tabel", "readings, dim_time, dim_tariff, daily_summary", f"Keempatnya dengan constraint; {I(dbc['readings'])}, {I(dbc['dim_time'])}, {I(dbc['dim_tariff'])}, {I(dbc['daily_summary'])} baris", OK("Sesuai")],
              ["Tarif", f"Peak Rp{I(RATE_PEAK)}, off-peak Rp{I(RATE_OFF)}, jam {I(PEAK_START)} sampai {I(PEAK_END)} (asumsi)", "Dipakai, tersimpan di <code>dim_tariff</code>; perubahan tarif terbukti mengubah biaya (Tabel 2.6b)", OK("Sesuai")],
              ["Hipotesis 1: pemakaian tertinggi siang, terendah malam", "Belum terbukti", cs(hv.loc["H1", "bukti"]), OK("Terbukti")],
@@ -382,7 +382,6 @@ rp7 += mk('<div class="card"><h4>7.4 Rekomendasi</h4><ul class="tight">',
           '<li>Pantau power factor pada jam beban ringan dan periksa penyebabnya di lapangan sebelum menyimpulkan.</li>',
           '<li>Ganti tarif asumsi dengan tarif kontrak di <code>dim_tariff</code> atau di dashboard sebelum angka dipakai untuk keputusan.</li></ul></div>')
 rp7 += mk('<div class="card"><h4>7.5 Saran perbaikan</h4><ul class="tight">',
-          '<li>Verifikasi lisensi dan cara sitasi dataset UCI dari halaman sumber sebelum dipublikasikan.</li>',
           '<li>Ganti tarif asumsi dengan tarif kontrak dan tambahkan biaya beban (kVA) dan denda kVArh.</li>',
           '<li>Dapatkan daftar beban yang bisa digeser dari tim operasi supaya skenario tidak lagi batas atas.</li>',
           '<li>Deploy dashboard ke Streamlit Community Cloud dan uji ke satu pembaca awam untuk mengisi kriteria 4 dan 6.</li></ul></div>')
@@ -391,7 +390,7 @@ rp7 += mk('<div class="card"><h4>7.6 Batasan</h4><ul class="tight">',
           f'<li>Tarif (Rp{I(RATE_PEAK)} dan Rp{I(RATE_OFF)} per kWh, jam {I(PEAK_START)} sampai {I(PEAK_END)}) adalah asumsi; biaya hanya komponen energi (kWh).</li>',
           '<li>Data tidak menyebut mesin mana yang menyala, jadi penghematan adalah batas atas dan kelayakan pemindahan belum diuji.</li>',
           '<li>Pola power factor rendah belum tentu penyebabnya; label waktu dibaca sebagai akhir interval berdasarkan bukti dari data, bukan dokumentasi sumber.</li>',
-          '<li>Lisensi dataset belum diverifikasi. Dashboard belum di-deploy dan kriteria 4 dan 6 belum terpenuhi. Slide presentasi (Opsional) tidak dibuat.</li></ul></div>')
+          '<li>Dashboard belum di-deploy dan kriteria 4 dan 6 belum terpenuhi. Slide presentasi (Opsional) tidak dibuat.</li></ul></div>')
 
 evq = [("1", "rp1", "Data yang didapat", OK("Didapat"), f"{I(dbc['readings'])} interval, {I(dbc['daily_summary'])} hari, 4 tabel, {I(len(resfiles))} CSV hasil"),
        ("2", "rp2", "Business question terjawab?", OK(f"{len(QT)} dari {len(QT)}"), f"Semua terjawab ({npr['Utama']} Utama, {npr['Pendukung']} Pendukung, {npr['Tambahan']} Tambahan); {nw} dengan catatan ({wtxt})"),
