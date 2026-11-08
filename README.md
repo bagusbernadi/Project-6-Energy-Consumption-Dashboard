@@ -2,7 +2,7 @@
 
 # Project 6: Energy Consumption Dashboard
 
-**Status: Selesai di branch `project-6-build` (menunggu review sebelum digabung ke `main`).**
+**Status: Selesai dan digabung ke `main`.**
 
 Halaman rancangan dan Report: https://bagusbernadi.github.io/Project-6-Energy-Consumption-Dashboard/
 
